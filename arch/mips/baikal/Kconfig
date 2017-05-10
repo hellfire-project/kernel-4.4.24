@@ -78,7 +78,7 @@ bool "Baikal-T BFK board"
     select SERIAL_8250_DW
 
     # WatchDog
-    select DW_WATCHDOG
+    #select DW_WATCHDOG
 
     # Timers
     select CLKSRC_OF
@@ -90,11 +90,11 @@ bool "Baikal-T BFK board"
     #select I2C_DESIGNWARE_PLATFORM
 
     # GPIO support
-    select GPIOLIB
-    select OF_GPIO
-    select GPIO_SYSFS
-    select GPIO_DWAPB
-    select GPIO_GENERIC
+    #select GPIOLIB
+    #select OF_GPIO
+    #select GPIO_SYSFS
+    #select GPIO_DWAPB
+    #select GPIO_GENERIC
 
     # Gigabit Ethernet support
     #select STMMAC_ETH
