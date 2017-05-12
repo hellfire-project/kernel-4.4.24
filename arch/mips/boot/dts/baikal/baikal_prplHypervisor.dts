@@ -42,12 +42,6 @@
 		ethernet2 = &gmac1;
 	};
 
-/*chosen {
-		bootargs = "root=/dev/ram rw console=ttyS0,mmio32,115200 earlyprintk=uart8250,mmio32,0x1F04A000,115200 nocoherentio stmmaceth=chain_mode:1";
-		linux,initrd-start = <0x01000000>;
-		linux,initrd-end   = <0x03000000>;
-	};*/
-
 	cpus {
 		#address-cells = <1>;
 		#size-cells = <0>;
