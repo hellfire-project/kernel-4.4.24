@@ -2220,11 +2220,13 @@ static void serial8250_set_divisor(struct uart_port *port, unsigned int baud,
 	else
 		serial_port_out(port, UART_LCR, up->lcr | UART_LCR_DLAB);
 
+#ifndef CONFIG_MACH_BAIKAL_BFK_HYPER
 	serial_dl_write(up, quot);
 
 	/* XR17V35x UARTs have an extra fractional divisor register (DLD) */
 	if (up->port.type == PORT_XR17V35X)
 		serial_port_out(port, 0x2, quot_frac);
+#endif 	
 }
 
 static unsigned int
@@ -2254,7 +2256,7 @@ serial8250_do_set_termios(struct uart_port *port, struct ktermios *termios,
 	unsigned int baud, quot, frac = 0;
 
 	cval = serial8250_compute_lcr(up, termios->c_cflag);
-
+	
 	baud = serial8250_get_baud_rate(port, termios, old);
 	quot = serial8250_get_divisor(up, baud, &frac);
 

@@ -336,7 +336,7 @@ bool "Baikal-T BFK for prplHypervisor"
 
     # Hardware features
     select HW_HAS_PCI
-    select HW_PERF_EVENTS
+    #select HW_PERF_EVENTS
 
     # Errata set
     select PAGE_SIZE_16KB
@@ -349,9 +349,9 @@ bool "Baikal-T BFK for prplHypervisor"
     select SYS_HAS_CPU_MIPS32_R5
 
     # HW perfomance counters
-    select HAVE_PERF_EVENTS
-    select PERF_EVENTS
-    select HW_PERF_EVENTS
+    #select HAVE_PERF_EVENTS
+    #select PERF_EVENTS
+    #select HW_PERF_EVENTS
 
     # Clock source
     select COMMON_CLK_BAIKAL

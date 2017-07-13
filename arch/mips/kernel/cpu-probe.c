@@ -150,7 +150,7 @@ static void cpu_set_nofpu_opts(struct cpuinfo_mips *c)
 	cpu_set_nofpu_id(c);
 }
 
-static int mips_fpu_disabled;
+static int mips_fpu_disabled = 1;
 
 static int __init fpu_disable(char *s)
 {
@@ -162,7 +162,7 @@ static int __init fpu_disable(char *s)
 
 __setup("nofpu", fpu_disable);
 
-int mips_dsp_disabled;
+int mips_dsp_disabled = 1;
 
 static int __init dsp_disable(char *s)
 {
@@ -174,7 +174,7 @@ static int __init dsp_disable(char *s)
 
 __setup("nodsp", dsp_disable);
 
-static int mips_htw_disabled;
+static int mips_htw_disabled = 1;
 
 static int __init htw_disable(char *s)
 {
@@ -188,7 +188,7 @@ static int __init htw_disable(char *s)
 
 __setup("nohtw", htw_disable);
 
-static int mips_ftlb_disabled;
+static int mips_ftlb_disabled = 1;
 static int mips_has_ftlb_configured;
 
 static int set_ftlb_enable(struct cpuinfo_mips *c, int enable);

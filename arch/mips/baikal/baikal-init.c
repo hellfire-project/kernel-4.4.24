@@ -101,10 +101,14 @@ phys_addr_t __weak mips_cdmm_phys_base(void)
  */
 void __init prom_init(void)
 {
+#ifndef CONFIG_MACH_BAIKAL_BFK_HYPER
 	unsigned long reg;
+#endif
+	
 #ifdef CONFIG_EARLY_PRINTK_8250
 	setup_8250_early_printk_port(KSEG1ADDR(BAIKAL_UART0_START), 2, 1000000);
 #endif
+	pr_info("teste1\n");
 	/* Setup power management handlers */
 	panic_timeout	 = 10;
 
@@ -119,8 +123,12 @@ void __init prom_init(void)
 	/* Early detection of CMP support */
  	mips_cm_probe();
 	mips_cpc_probe();
+	
+#ifndef CONFIG_MACH_BAIKAL_BFK_HYPER
 	/* Setup L2 prefetch */
+	wmb();
 	reg = read_gcr_l2_pft_control();
+	wmb();
 	/* Set page mask depending on actual page size */
 	reg &= ~(CM_GCR_L2_PFT_CONTROL_PAGEMASK_MSK);
 #if defined(CONFIG_PAGE_SIZE_4KB)
@@ -144,7 +152,8 @@ void __init prom_init(void)
 	reg = read_gcr_l2_pft_control_b();
 	write_gcr_l2_pft_control_b(reg | CM_GCR_L2_PFT_CONTROL_PFTEN_MSK);
 	wmb();
-
+#endif 
+	
 #ifdef CONFIG_SMP
 #ifdef CONFIG_MIPS_CPS
 	if (!register_cps_smp_ops())

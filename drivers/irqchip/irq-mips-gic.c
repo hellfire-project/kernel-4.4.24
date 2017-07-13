@@ -126,6 +126,7 @@ static inline void gic_map_to_pin(unsigned int intr, unsigned int pin)
 {
 	gic_write32(GIC_REG(SHARED, GIC_SH_INTR_MAP_TO_PIN_BASE) +
 		    GIC_SH_MAP_TO_PIN(intr), GIC_MAP_TO_PIN_MSK | pin);
+	
 }
 
 static inline void gic_map_to_vpe(unsigned int intr, unsigned int vpe)
@@ -956,8 +957,12 @@ static void __init __gic_init(unsigned long gic_base_addr,
 	gicconfig = gic_read(GIC_REG(SHARED, GIC_SH_CONFIG));
 	gic_shared_intrs = (gicconfig & GIC_SH_CONFIG_NUMINTRS_MSK) >>
 		   GIC_SH_CONFIG_NUMINTRS_SHF;
+	
+#ifndef CONFIG_MACH_BAIKAL_BFK_HYPER		
 	gic_shared_intrs = ((gic_shared_intrs + 1) * 8);
-
+#else	
+	gic_shared_intrs = 256;	   
+#endif 
 	gic_vpes = (gicconfig & GIC_SH_CONFIG_NUMVPES_MSK) >>
 		  GIC_SH_CONFIG_NUMVPES_SHF;
 	gic_vpes = gic_vpes + 1;

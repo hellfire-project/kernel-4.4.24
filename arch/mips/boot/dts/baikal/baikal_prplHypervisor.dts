@@ -33,13 +33,13 @@
 	aliases {
 		gic = &gic;
 		serial0 = &uart0;
-		serial1 = &uart1;
+/*		serial1 = &uart1;
 		i2c0 = &i2c0;
 		i2c1 = &i2c1;
 		ssi0 = &spi0;
 		ssi1 = &spi1;
 		ethernet1 = &gmac0;
-		ethernet2 = &gmac1;
+		ethernet2 = &gmac1;*/
 	};
 
 	cpus {
@@ -90,7 +90,7 @@
 		interrupt-parent = <&gic>;
 
 		ranges;
-
+/*
 		dma: dma@1f041000 {
 			compatible = "snps,dma-spear1340";
 			reg = <0x1f041000 0x1000>;
@@ -106,6 +106,7 @@
 			clocks = <&dma_clk 0>;
 			clock-names = "hclk";
 		};
+
 
 		sata@1F050000 {
 			interrupt-parent = <&gic>;
@@ -144,21 +145,18 @@
 			local-mac-address = [ 00 20 13 ba 1c a3 ];
 		};
 
-		/* Peripherial error handler block */
 		apb_ehb@1F059000 {
 			compatible = "be,apb-ehb";
 			reg = <0x1f059000 0x1000>;
 			interrupts = <GIC_SHARED 16 IRQ_TYPE_LEVEL_HIGH>;
 		};
 
-		/* Interconnect error handler block */
-
 		axi_ehb@1F04D110 {
 			compatible = "be,axi-ehb";
 			reg = <0x1F04D110 0x8>;
 			interrupts = <GIC_SHARED 127 IRQ_TYPE_LEVEL_HIGH>;
 		};
-
+*/
 		apb {
 			compatible = "simple-bus";
 			#address-cells = <1>;
@@ -166,7 +164,7 @@
 			interrupt-parent = <&gic>;
 
 			ranges;
-
+/*
 			timer0: timer0@1F049000 {
 				compatible = "snps,dw-apb-timer-osc";
 				interrupts = <GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>;
@@ -190,7 +188,7 @@
 				clocks = <&timer2_clk 0>;
 				clock-names = "timer";
 			};
-
+*/
 			uart0: serial0@1F04A000 {
 				compatible = "snps,dw-apb-uart";
 				reg = <0x1F04A000 0x1000>;
@@ -201,6 +199,7 @@
 				clock-names = "baudclk", "apb_pclk";
 			};
 
+/*
 			uart1: serial1@1F04B000 {
 				compatible = "snps,dw-apb-uart";
 				reg = <0x1F04B000 0x1000>;
@@ -350,6 +349,7 @@
 					interrupts = <GIC_SHARED 19 IRQ_TYPE_LEVEL_HIGH>;
 				};
 			};
+*/
 		};
 	};
 };
